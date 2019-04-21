@@ -1,0 +1,43 @@
+.App {
+    width: 100vw; 
+    height: 100vh;
+display: flex;
+flex-direction: column;
+flex-wrap: nowrap;
+/* background-image: url(https://www.spring.org.uk/images/b46.png); */
+color: rgba(255, 255, 255, 0.877);
+}
+
+.AppWrapper {
+    width: 60vw;
+    margin: 0 auto;
+}
+
+.BlogWrapper {
+    display: flex;
+flex-direction: row;
+}
+
+
+#backgroundImg{
+    position: fixed;
+    z-index: -1;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    /* background:  linear-gradient(to bottom, rgb(201, 150, 235), rgb(82, 156, 134)); */
+  }
+  
+  #backgroundImg:after{
+    background: url('./connectwork.png'); 
+    content: '';
+    background-size: auto;
+    background-repeat: repeat;
+    position: absolute;
+    /* opacity: .5; */
+    top:0;
+    bottom:0;
+    left: 0;
+    right:0;
+  }
