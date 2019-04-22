@@ -4,8 +4,8 @@ import './App.css'
 import Header from './Header'
 import Blog from './Blog'
 import Navbar from './Navbar'
-import Img from '../assets/icons/full-bloom.png'
-import Img1 from './full-bloom.png'
+// import Img from '../assets/icons/full-bloom.png'
+// import Img1 from './full-bloom.png'
 
 
 class App extends Component {
@@ -17,7 +17,7 @@ class App extends Component {
       <div className="AppWrapper">
         <Header/>
         <Navbar />
-        <div class='BlogWrapper'>
+        <div className='BlogWrapper'>
           <Blog />
         </div>
         <div id='backgroundImg'></div>
