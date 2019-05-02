@@ -1,116 +1,88 @@
 import React from 'react';
-// /import Style from './style/index.js';
-//import Logo from '../../assets/icons/headerLogo.PNG'
-import Styled from 'styled-components';
-// import SidebarDiv from '../SidebarDiv';
 import API from '../../utils/API';
 import BlogTile from '../BlogTile';
-import MyEditor from '../MyEditor';
-
-
-
-const Wrapper = Styled.div`
-display: flex;
-flex-direction: column;
-
-`;
-
 
 class Blog extends React.Component {
     constructor() {
         super();
         this.state = {
             // users: '',
+            name: '',
+            location: '',
+            date: '',
+            img: '',
 
             articlebody: '',
             articletitle: '',
-            savedArticles: []
+            savedEvents: []
         }
-        this.getArticles();
+        this.getEvents();
     }
 
-    ArticleInput = event => {
+    change = (e) => {
         this.setState({
-            articlebody: event.target.value
-        })
-    }
-    TitleInput = event => {
-        this.setState({
-            articletitle: event.target.value
+            [e.target.name]: e.target.value
         })
     }
 
-    saveArticle = () => {
-        const newArticle = {
-            articlebody: this.state.articlebody,
-            articletitle: this.state.articletitle
+    saveEvent = () => {
+        const newEvent = {
+            name: this.state.name, 
+            location: this.state.location,
+            date: this.state.date, 
+            img: this.state.img
         }
-
-        API.saveArticle(newArticle)
+        API.saveEvent(newEvent)
             .then(res => {
-                //console.log(res.data);
                 this.setState({
-                    savedArticles: [...this.state.savedArticles, res.data]
+                    savedEvents: [...this.state.savedEvents, res.data]
                 });
-                console.log(this.state.savedArticles)
+                console.log(this.state.savedEvents)
             })
             .catch(err => console.log(err));
     };
 
-
-
-    // GET: all saved articles
-    getArticles = () => {
-        //console.log(article);
-        API.getArticles()
+    getEvents = () => {
+        API.getEvents()
             .then(res => {
                 this.setState({
-                    savedArticles: res.data
+                    savedEvents: res.data
                 })
             })
             .catch(err => console.log(err));
     };
 
-
-    deleteArticle = (id) => {
+    deleteEvent = (id) => {
         // slice article with the id from state 
         this.setState((prevState) => ({
-            savedArticles: prevState.savedArticles.filter((item) => item._id !== id)
+            savedEvents: prevState.savedEvents.filter((item) => item._id !== id)
         }));
-       API.deleteArticle(id)
+       API.deleteEvent(id)
            .catch(err => console.log(err));
     };
 
     render() {
-        // const bookDiv = this.state.books ? this.state.books.map((item, index) => (
-        //     <SidebarDiv
-        //         id={item.id}
-        //         title={item.title}
-        //         body={item.body}
-        //     />
-        // )) : null;
-        const { savedArticles } = this.state;
-
-
+        const { savedEvents } = this.state;
         return (
-            <Wrapper>
-                <MyEditor />
-                <input id='titleInput' onChange={this.TitleInput} placeholder='Enter title' />
-                <input id='articleInput' onChange={this.ArticleInput} placeholder='Enter article body' />
-
-                <button onClick={() => { this.saveArticle() }}>Save Article</button>
-                {/* <div style={{'display': 'flex', 'flexDirection': 'column'}}>{bookDiv}</div>  */}
-
-                {/* SHOW ARTICLES  */}
-            
-                {savedArticles && savedArticles.map((item, index) => (
-                        <BlogTile key={item._id} id={item._id} title={item.articletitle} body={item.articlebody} delete={this.deleteArticle}/>
+            <div className='blogWrapper'>
+                <input onChange={e => this.change(e)} name="name" placeholder='Event name' />
+                <input onChange={e => this.change(e)} name="location" placeholder='Event location' />
+                <input onChange={e => this.change(e)} name="date" placeholder='Event date' />
+                <input onChange={e => this.change(e)} name="img" placeholder='Event img' />
+                
+                <button onClick={() => { this.saveEvent() }}>Save Event</button>
+                {savedEvents && savedEvents.map((item, index) => (
+                        <BlogTile 
+                        key={item._id} 
+                        id={item._id} 
+                        name={item.name} 
+                        location={item.location} 
+                        date={item.date}
+                        img={item.img}
+                        delete={this.deleteEvent}/>
                 ))
                 }
-
-
-
-            </Wrapper>
+            </div>
         );
     }
 }

@@ -1,17 +1,5 @@
-
-
-
 // Serve up static assets
 //app.use(express.static("client/build"));
-// Add routes, both API and view
-
-
-
-
-
-
-
-
 // Express server dependencies 
 var createError = require('http-errors');
 var express = require('express');
@@ -24,7 +12,7 @@ const mongoose = require("mongoose");
 var cors = require('cors');
 //var monk = require('monk');
 //var db = monk('localhost:27017/psychcentral');
-
+const jwt = require('jsonwebtoken');
 const routes = require("./routes");
 
 var app = express();
@@ -61,6 +49,73 @@ app.use(cookieParser());
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 app.use(routes);
+
+
+// Protected routes need jwt.verify
+app.post('/api/posts', verifyToken, (req, res) => {
+  jwt.verify(req.token, 'yOvcW%#LmN}>pd/<_J}mC>KZ#(tk}}2<d4CCPKS)rQ+ILyxG~DN[~mqXlJkk,wp', (err, authData) => {
+    if(err) {
+      res.sendStatus(403);
+    } else {
+      res.json({
+        message: 'Post created',
+        authData
+      })
+    }
+
+})
+})
+// app.post('/api/user/ogin', (req, res) => {
+
+//   const user = req.body
+//   //console.log(req.body)
+//   // const user = {
+//   //   id: 1,
+//   //   username: 'jen',
+//   //   email: 'jenfux@gmail.com'
+//   // }
+
+//   jwt.sign({user}, 'yOvcW%#LmN}>pd/<_J}mC>KZ#(tk}}2<d4CCPKS)rQ+ILyxG~DN[~mqXlJkk,wp', { expiresIn: '1 day'}, (err, token) => {
+//     res.json({
+//       token
+//     })
+//   });
+// })
+
+// app.register('/api/register', (req, res) => {
+//   const user = req.body 
+
+// })
+
+// Format of bearer token
+// Authoriztion: Bearer <access_token>
+
+// Verify token
+function verifyToken(req, res, next) {
+  // Get auth header value - when we send token auth value in header
+  const bearerHeader = req.headers['authorization'];
+  // Check if bearer is undefined
+  if(typeof bearerHeader !== 'undefined') {
+    // Split token out of bearer token. Split = string to array
+    const bearer = bearerHeader.split(' ');
+    // Get token from array 
+    const bearerToken = bearer[1];
+    // Set the token 
+    req.token = bearerToken;
+    // Call next middlewre 
+    next();
+//res.json('Yo!')
+  } else {
+  // Forbidden
+  res.sendStatus(403);
+}
+}
+
+
+
+
+
+
 //catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

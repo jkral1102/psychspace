@@ -1,0 +1,12 @@
+client:
+
+Create login component form 
+Show this if loggedIn = false in app.js
+on form submit, send axios request to api/login
+
+server:
+
+api/login post request: take request credentials and generate token 
+send back token 
+
+client: set token to a variable to be used with every post/get 

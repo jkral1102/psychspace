@@ -3,31 +3,37 @@ import axios from "axios";
 export default {
   // ARTICLES 
   
-  // Gets all articles
-  getArticles: function() {
-    return axios.get("/api/articles");
+  // Gets all events
+  getEvents: function() {
+    return axios.get("/api/events");
   },
-  // Gets article with a given id
-  getArticle: function(id) {
-    return axios.get("/api/articles/" + id);
+  // Gets event with a given id
+  getEvent: function(id) {
+    return axios.get("/api/events/" + id);
   },
-  updateArticle: function(id, data) {
-    return axios.put("/api/articles/" + id, data);
+  updateEvent: function(id, data) {
+    return axios.put("/api/events/" + id, data);
   },
-  // Deletes article with a given id
-  deleteArticle: function(id) {
-    return axios.delete("/api/articles/" + id);
+  // Deletes event with a given id
+  deleteEvent: function(id) {
+    return axios.delete("/api/events/" + id);
   },
-  // Save article or comment to db
-  saveArticle: function(data) {
-    return axios.post("/api/articles", data);
+  // Save event 
+  saveEvent: function(data) {
+    return axios.post("/api/events", data);
   },
-  // Save comment to db
+  // Save comment
   postComment: function(id, comment) {
-    return axios.put("/api/articles/" + id,  {commentBody: comment});
+    return axios.put("/api/events/" + id,  {commentBody: comment});
+  },
+
+  //Login
+  login: function(data) {
+    return axios.post("/api/users/login", data)
+  },
+  //Register
+  register: function(data) {
+    return axios.post("/api/users/register", data)
   }
-
-
-  //USERS
 
 };

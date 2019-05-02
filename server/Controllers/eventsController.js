@@ -1,9 +1,9 @@
 const db = require("../models");
 
-// Defining methods for the articlesController
+// Defining methods for the eventsController
 module.exports = {
   findAll: function(req, res) {
-    db.Article
+    db.Event
       .find(req.query)
       .sort({ date: -1 })
       .then(data => res.json(data))
@@ -13,9 +13,8 @@ module.exports = {
 
   create: function(req, res) {
     console.log(req.body)
-    db.Article
+    db.Event
       .create(req.body)
-     
       .then(data =>{
          res.json(data)
         })
@@ -23,12 +22,11 @@ module.exports = {
   },
 
   update: function(req, res) {
-   // console.log(req.id)
     console.log('server update called')
-    db.Article
+    db.Event
       .findByIdAndUpdate(req.params.id,
         { $set:
-          {articletitle: req.body.articletitle, articlebody: req.body.articlebody}}
+          {name: req.body.name, location: req.body.location, date: req.body.date, img: req.body.img}}
         // { $push: 
         //   {comments: 
         //     {comment: req.body.commentBody.comment, username: req.body.commentBody.username}}}
@@ -37,7 +35,7 @@ module.exports = {
   },
 
   remove: function(req, res) {
-    db.Article
+    db.Event
       .findById(
         { _id: req.params.id }
       )
@@ -46,7 +44,7 @@ module.exports = {
   },
 
     findById: function(req, res) {
-    db.Article
+    db.Event
       .findById(req.params.id)
       .then(data => res.json(data))
       .catch(err => res.status(422).json(err));

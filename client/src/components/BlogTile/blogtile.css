@@ -1,0 +1,10 @@
+.blogTile {
+    display: flex;
+    flex-direction: column;
+    flex: 2; 
+    color: black;
+    background-color: white;
+    border: solid 1px white;
+    padding: 30px;
+    margin: 10px;
+}

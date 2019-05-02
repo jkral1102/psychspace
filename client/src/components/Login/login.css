@@ -1,0 +1,15 @@
+.loginWrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    max-width: 15vw;
+    margin: auto;
+}
+
+.messageDiv {
+    border: solid 1px black;
+    text-transform: capitalize;
+    font-weight: bold;
+    color: red;
+    padding: 5px;
+}
