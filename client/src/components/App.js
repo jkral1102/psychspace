@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css'
 import Header from './Header'
 import Blog from './Blog'
-import Navbar from './Navbar'
 import Login from './Login'
 
 
@@ -37,15 +36,15 @@ componentDidMount() {
 
     return (
       <div className='App'>
-        <div className="AppWrapper">
-          <Header />
-          <Navbar handleLogin={this.handleLogin} />
+       
+          <Header handleLogin={this.handleLogin} />
+          
           {this.state.loggedIn ?
             <Blog /> : <Login handleLogin={this.handleLogin} />
           }
           {/* <Blog /> */}
           <div id='backgroundImg'></div>
-        </div>
+       
       </div>
     );
   }

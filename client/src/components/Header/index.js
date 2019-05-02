@@ -10,10 +10,16 @@ class Header extends React.Component {
     state = {  }
     render() { 
         return ( 
-            <div className="headerWrapper">
-                <div>Psych Space</div>
+            <div id="headerWrapper">
+                <div id='headerTitle'>Psych Space</div>
                 {/* <img className='headerImg' style={{'height': '100px', 'margin': 'auto', 'transform': 'scaleX(-1)'}} src={SkullLogo} alt='logo'/> */}
-               
+                <div className='navbarWrapper'>
+                <div>Home</div>
+                <div>About</div>
+                <div onClick={() => { this.props.handleLogin(false)}}>Logout</div>
+            </div>
+
+
             </div>
          );
     }

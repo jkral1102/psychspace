@@ -1,21 +1,44 @@
-.headerWrapper {
+#headerWrapper {
     display: flex;
-    justify-content: center;
-    width: 60vw; 
-    height: 15vh;
-    line-height: 15vh;
+    justify-content: space-between;
+
+    max-width: 100vw; 
+    height: 10vh;
+
+    line-height: 10vh;
     vertical-align: center;
-    justify-content: space-around;
+    
     text-transform: uppercase;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: bold;
-    border-bottom: solid 2px #2f2b2b;
+    border-bottom: solid 5px #03ff63;
+    background-color: black;
 }
 
-/* .headerImg { 
-     height: '100px'; 
-    margin: auto;
-    transform: scaleX(-1);
-    src: '../../assets/icons/galaxyMind.png';
-    font-size: 10px;
-} */
+#headerTitle{
+    margin-left: 30px;
+}
+
+
+.navbarWrapper {
+    display: flex;
+    justify-content: space-between;
+    /* margin: 10px auto 10px auto; */
+    font-size: 15px;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 25vw;
+    text-align: center;
+    
+   
+}
+
+.navbarWrapper > div{
+    flex: 1;
+    /* border: solid 1px white; */
+    padding: 3px 8px 3px 8px;
+}
+
+.navbarWrapper > div:hover{
+    background-color: #03ff63;
+}

@@ -1,4 +1,78 @@
-.blogWrapper {
+#main {
+    flex: 1;
     display: flex;
     flex-direction: column;
+    width: 60vw;
+    max-height: 60vh;
+    background-color: rgb(58, 58, 58);
+    margin: 50px auto;
 }
+
+#mainNavbar{
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+    text-transform: uppercase;
+    border-bottom: solid 1px white;
+    
+}
+
+#mainNavbar > div {
+    
+    flex: 1;
+    text-align: center;
+    padding: 20px;
+    cursor: pointer;
+}
+
+#mainNavbar > div:hover {
+    color: rgb(111, 189, 235);
+}
+
+#upcomingDiv{
+    border-left: solid 1px white;
+}
+
+#addEventDiv{
+    border-left: solid 1px white;
+}
+
+#mainBody{
+    display: flex;
+    flex-direction: row;
+    
+    
+}
+
+#eventForm{
+    flex: 1;
+    margin: 20px 0px 0px 20px;
+    display: flex;
+    flex-direction: column;
+   
+}
+
+#eventForm > input {
+    width: 200px;
+}
+
+#eventForm > button {
+    width: 200px;
+}
+
+#yearCol{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-image: linear-gradient(rgb(78, 78, 78), rgb(133, 133, 133));
+    max-width: 5vw;
+    height: 30vh;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+    /* height: 60vh; */
+    border-left: solid 1px grey;
+   
+}
+
